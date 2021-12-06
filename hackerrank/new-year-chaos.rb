@@ -2,8 +2,44 @@
 
 require 'set'
 
-# 
+# solution O(n)
 def minimumBribes(q)
+  gaps = Set.new
+  expected = 1
+  total_bribes = 0
+
+  q.each_with_index do |sticker, position|
+    gaps.delete sticker
+    if sticker == expected
+      expected = gaps.min || position + 2
+      next
+    end
+    
+    # adding gap
+    shift = sticker - 1 - position
+    if shift > 2
+      puts 'Too chaotic'
+      return
+    end
+
+    if shift > gaps.size
+      from = sticker - 1
+      while gaps.size < shift
+        gaps.add from
+        from -= 1
+      end
+    elsif !shift.positive?
+      shift = gaps.size
+    end
+
+    total_bribes += shift
+  end
+
+  puts total_bribes
+end
+
+
+def minimumBribes_wrong4(q)
   total_bribes = 0
   expected = 1
   shift = 0
