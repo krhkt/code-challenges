@@ -1,3 +1,4 @@
 .vs
 .vscode
-.rubocop.yml
+**/.vs
+**/.rubocop.yml
