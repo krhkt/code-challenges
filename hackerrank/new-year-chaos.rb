@@ -217,6 +217,65 @@ def search_missing(q)
   bribes
 end
 
+# SOLUTION, but too slow. this is a O(n^2)
+def bribes_by_seen(q)
+  seen = Set.new
+  total_bribes = 0
+
+  q.each do |sticker|
+    current_bribes = 0
+    start = sticker - 1
+    while start.positive?
+      current_bribes += 1 unless seen.include? start
+      start -= 1
+    end
+    if current_bribes > 2
+      puts 'Too chaotic'
+      return
+    end
+    total_bribes += current_bribes
+    seen.add sticker
+  end
+
+  puts total_bribes
+end
+
+# FINAL SOLUTION, O(n)
+def bribes_by_seen_with_expected(q)
+  gaps = Set.new
+  expected = 1
+  total_bribes = 0
+
+  q.each_with_index do |sticker, position|
+    gaps.delete sticker
+    if sticker == expected
+      expected = gaps.min || position + 2
+      next
+    end
+    
+    # adding gap
+    shift = sticker - 1 - position
+    if shift > 2
+      puts 'Too chaotic'
+      return
+    end
+
+    if shift > gaps.size
+      from = sticker - 1
+      while gaps.size < shift
+        gaps.add from
+        from -= 1
+      end
+    elsif !shift.positive?
+      shift = gaps.size
+    end
+
+    total_bribes += shift
+  end
+
+  puts total_bribes
+end
+
 
 def _check_relative(q)
   q.each_with_index.map do |sticker, position|
@@ -254,15 +313,15 @@ input7 = 2,3,1,5,7,4,6,9,10,8,12,11,15,13,14,18,19,17,16,21,20,23,24,22,26,25,28
 # minimumBribes(input5)
 
 
-p search_missing(input_base)
-p search_missing(input)
-p search_missing(input2)
-p search_missing(input3)
-p search_missing(input3a)
-p search_missing(input4)
-p search_missing(input5)
-p search_missing(input6)
-p search_missing(input7)
+bribes_by_seen_with_expected(input_base)
+bribes_by_seen_with_expected(input)
+bribes_by_seen_with_expected(input2)
+bribes_by_seen_with_expected(input3)
+bribes_by_seen_with_expected(input3a)
+bribes_by_seen_with_expected(input4)
+bribes_by_seen_with_expected(input5)
+bribes_by_seen_with_expected(input6)
+bribes_by_seen_with_expected(input7)
 
 # position_check(input_base)
 # position_check(input)

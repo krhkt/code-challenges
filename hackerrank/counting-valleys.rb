@@ -13,6 +13,7 @@ def counting_valleys(_, path)
   valleys_total
 end
 
+# TODO
 # possible optimizations:
 #   since the size of the path is known,
 #   and the rule dictates that a path starts and ends at sea level,
@@ -25,7 +26,7 @@ def counting_valleys(total_steps, path)
   path.split('').reduce(0) do |acc, step|
     delta = step == 'D' ? -1 : 1
     acc += delta
-    return 
+    return # TODO
     valleys_total += 1 if acc.zero? && delta.positive?
     acc
   end
