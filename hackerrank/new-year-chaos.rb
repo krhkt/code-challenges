@@ -15,13 +15,13 @@ def minimumBribes(q)
       next
     end
     
-    # adding gap
     shift = sticker - 1 - position
     if shift > 2
       puts 'Too chaotic'
       return
     end
 
+    # adding gap
     if shift > gaps.size
       from = sticker - 1
       while gaps.size < shift
