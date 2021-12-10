@@ -1,4 +1,4 @@
-#https://leetcode.com/problems/rotated-digits/
+# https://leetcode.com/problems/rotated-digits/
 
 class Solution:
     rotationTableDigit = {

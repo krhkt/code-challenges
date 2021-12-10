@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/contains-duplicate-iii/submissions/
+// https://leetcode.com/problems/contains-duplicate-iii/
 
 /* V1 */
 var containsNearbyAlmostDuplicate = function(nums, k, t) {

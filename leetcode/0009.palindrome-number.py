@@ -1,4 +1,4 @@
-#https://leetcode.com/problems/palindrome-number/
+# https://leetcode.com/problems/palindrome-number/
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
@@ -18,4 +18,4 @@ class Solution:
 
 
 
-print(Solution().isPalindrome(10));
+print(Solution().isPalindrome(10))
