@@ -1,34 +1,19 @@
 # https://www.hackerrank.com/challenges/sherlock-and-anagrams/problem
 
 def sherlockAndAnagrams(s)
-  memo = {}
-  seen_substrings = {}
-  pairs_count = 0
-  
-  (1...s.length).each do |size|
-    subs = s.dup
-    until subs.length < size
-      head = subs[0...size]
-      tail = subs[1..]
+  #TODO: use array to count letters instead of a hash
+  #      that allows for a sliding window, instead of a 
+  #      recounting for each substring
 
-      tail.chars
-      .each_cons(size)
-      .map(&:join)
-      .each do |slice|
-        pairs_count += 1 if anagram?(head, slice, memo)
-      end
-
-      subs = subs[1..]
-    end
-  end
-
-  pairs_count
+  # note to future me: see my JS solution for this problem
+end
+#counting array
+def count_letter_occurrences(text, start, end)
 end
 
-
+# ==== all solutions bellow this line timeout some test cases ====
 def sherlockAndAnagrams_v1(s)
   memo = {}
-  seen_substrings = {}
   pairs_count = 0
   
   (1...s.length).each do |size|
@@ -78,10 +63,11 @@ def sherlockAndAnagrams_v0(s)
 end
 
 def get_key(s1, s2) 
-  "#{s1}#{s2}"
+  s1 > s2 ? "#{s1}#{s2}" : "#{s2}#{s1}"
 end
 
-def anagram?(s1, s2, memo)
+
+def anagram_v2?(s1, s2, memo)
   key = get_key(s1, s2)
   return memo[key] if memo.key? key
 
@@ -135,5 +121,7 @@ end
 
 # test area
 
-p anagram?('cabba', 'cabab')
+#p anagram?('cabba', 'cabab')
 #p sherlockAndAnagrams('abba')
+
+p sherlockAndAnagrams('cdcd')
