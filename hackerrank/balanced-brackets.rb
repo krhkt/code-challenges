@@ -11,19 +11,19 @@ def isBalanced(s)
 
   s.chars.each do |c|
     if opening_brackets.include? c
-      stack.push([c, 1]) && next if stack.last.nil? || !stack.last[0] != c
+      stack.push([c, 1]) && next if stack.empty? || stack.last[0] != c
 
       stack.last[1] += 1
       next
     end
 
-    return 'NO' if stack.last.nil? || stack.last[0] != matching_bracket[c]
+    return 'NO' if stack.empty? || stack.last[0] != matching_bracket[c]
 
     stack.last[1] -= 1
     stack.pop() if stack.last[1] == 0
   end
 
-  return stack.empty? ? 'YES' : 'NO'
+  stack.empty? ? 'YES' : 'NO'
 end
 
 
